@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project FILES | JRLMHS Faculty Terminal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bp-blue: #2b6cb0;
+            --bp-light: #ebf4ff;
+            --bp-line: rgba(43, 108, 176, 0.1);
+            --accent-glow: #63b3ed;
+            --text-dark: #2d3748;
+            --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: #f0f4f8;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- ELECTRO CIRCUIT BACKGROUND --- */
+        .circuit-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(var(--bp-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--bp-line) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        /* Animated "Electricity" pulses flowing down */
+        .circuit-bg::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(99, 179, 237, 0.2) 50%, 
+                transparent 100%);
+            background-size: 100% 300px;
+            animation: flowDown 4s linear infinite;
+        }
+
+        @keyframes flowDown {
+            0% { background-position: 0 -300px; }
+            100% { background-position: 0 100vh; }
+        }
+
+        .blueprint-frame {
+            width: 90%; max-width: 1200px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border: 3px solid var(--bp-blue);
+            border-radius: 40px;
+            position: relative;
+            padding: 60px 40px;
+            box-shadow: 0 30px 100px rgba(43, 108, 176, 0.15);
+            animation: frameEntry 1s var(--ease-pop);
+        }
+
+        @keyframes frameEntry {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- CENTERED HEADER --- */
+        header {
+            text-align: center; /* Center alignment */
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px dashed var(--bp-blue);
+        }
+
+        .logo-area h1 {
+            font-size: 4rem; font-weight: 900; margin: 0 auto;
+            letter-spacing: -2px; text-transform: uppercase;
+            background-image: linear-gradient(90deg, var(--bp-blue), #63b3ed, var(--bp-blue));
+            background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: liquidLight 4s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes liquidLight { to { background-position: 200% center; } }
+
+        .subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem; color: var(--bp-blue); 
+            margin: 15px auto 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: fit-content;
+            border-right: 3px solid var(--bp-blue);
+            white-space: nowrap; overflow: hidden;
+            animation: typing 3.5s steps(45, end) forwards, blink 0.8s step-end infinite;
+        }
+
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 50% { border-color: transparent } }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- PLAYFUL BOXES --- */
+        .card {
+            background: white;
+            border: 2px solid var(--bp-blue);
+            padding: 30px;
+            border-radius: 30px;
+            transition: all 0.4s var(--ease-pop);
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) rotate(1deg);
+            border-color: var(--accent-glow);
+            box-shadow: 0 20px 40px rgba(99, 179, 237, 0.2);
+        }
+
+        .card-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem; color: var(--bp-blue);
+            font-weight: bold; margin-bottom: 15px; display: block;
+        }
+
+        h2 { font-size: 1.5rem; color: var(--bp-blue); margin: 0 0 15px 0; font-weight: 700; }
+        p { font-size: 0.95rem; color: #4a5568; line-height: 1.6; margin-bottom: 25px; }
+
+        .btn-stack { display: flex; flex-direction: column; gap: 10px; }
+        .btn {
+            display: block; text-decoration: none; padding: 15px;
+            font-family: 'JetBrains Mono', monospace; font-weight: 700;
+            font-size: 0.8rem; text-align: center; text-transform: uppercase;
+            border-radius: 20px; transition: 0.3s;
+        }
+
+        .btn-primary { background: var(--bp-blue); color: white; border: none; }
+        .btn-primary:hover { background: var(--accent-glow); transform: scale(1.05); }
+
+        .btn-outline { border: 2px solid var(--bp-blue); color: var(--bp-blue); }
+        .btn-outline:hover { background: var(--bp-light); }
+
+        footer {
+            margin-top: 50px; text-align: center;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--bp-blue);
+            opacity: 0.7;
+        }
+
+        @media (max-width: 850px) {
+            .logo-area h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 0.6rem; white-space: normal; width: 100%; border: none; animation: none; }
+            .blueprint-frame { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="circuit-bg"></div>
+
+    <div class="blueprint-frame">
+        <header>
+            <div class="logo-area">
+                <h1>Project FILES</h1>
+                <div class="subtitle">Faculty Interface for Logging & Exchange of Submissions</div>
+            </div>
+        </header>
+
+        <div class="module-grid">
+            <div class="card">
+                <div>
+                    <span class="card-num">// 01_EXPLORER</span>
+                    <h2>Explorer</h2>
+                    <p>Real-time submission tracker. Monitor the status of your projects using your unique control number.</p>
+                </div>
+                <div class="btn-stack">
+                    <a href="https://script.google.com/a/macros/deped.gov.ph/s/AKfycbz1WeO2fhcKcTwNwhRQwbX1bJSF9e5sPY52d3SletsEFfc_tI6JINCGyIP2AoXDQNCM/exec" class="btn btn-primary">Open Terminal</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="card-num">// 02_LEAVE</span>
+                    <h2>Leave Form</h2>
+                    <p>Form 6 automation. Download templates, apply digital signatures, and submit to the server.</p>
+                </div>
+                <div class="btn-stack">
+                    <a href="https://drive.google.com/uc?export=download&id=17GKx_wZsFYtnUgJn1ubboHCXDBzAkrs1" class="btn btn-primary">Download Form</a>
+                    <a href="https://www.ilovepdf.com/sign-pdf" class="btn btn-outline">E-Sign Tool</a>
+                    <a href="https://docs.google.com/forms/u/0/d/e/1FAIpQLScT8a-rUFGZhJcq38Kgq0SgeX5OxTk4p6cFtZ7H9cwzgReKlQ/formResponse" class="btn btn-outline">Transmit</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="card-num">// 03_PRIN</span>
+                    <h2>Principal</h2>
+                    <p>Direct portal for submitting official administrative documents to the Principal's Office.</p>
+                </div>
+                <div class="btn-stack">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScT8a-rUFGZhJcq38Kgq0SgeX5OxTk4p6cFtZ7H9cwzgReKlQ/viewform?usp=header" class="btn btn-primary">Start Submission</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <span class="card-num">// 04_COPY</span>
+                    <h2>Request a Copy</h2>
+                    <p>Access released documents via the Record Management System. Secure document retrieval.</p>
+                </div>
+                <div class="btn-stack">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScNlww-GlUPtTTsqjtJe8yEcJg8LyGNEJu0Vu5KzfGwKp5eDA/viewform?usp=header" class="btn btn-primary">Request Now</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            // SYSTEM STATUS: OPERATIONAL // JRLMHS 2026 //
+        </footer>
+    </div>
+
+</body>
+</html>
