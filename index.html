@@ -4,219 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project FILES | JRLMHS Cyber Terminal</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --bg-dark: #0a1128;
-            --terminal-frame: rgba(20, 30, 65, 0.7);
+            --terminal-frame: rgba(20, 30, 65, 0.85);
             --holo-cyan: #00f2fe;
             --holo-blue: #4facfe;
             --text-light: #e2e8f0;
             --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
         body {
             margin: 0; padding: 0;
             font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-dark) !important;
             color: var(--text-light);
             min-height: 100vh;
             display: flex; justify-content: center; align-items: center;
-            overflow-x: hidden;
-            position: relative;
+            overflow-x: hidden; position: relative;
         }
-
         .circuit-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
                 linear-gradient(rgba(0, 242, 254, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 242, 254, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -2;
+            background-size: 40px 40px; z-index: -2;
         }
-
         .circuit-bg::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, transparent 0%, rgba(0, 242, 254, 0.1) 10%, transparent 20%);
-            background-size: 100% 500px;
-            animation: circuitPulse 6s linear infinite;
+            background-size: 100% 500px; animation: circuitPulse 6s linear infinite;
         }
-
         @keyframes circuitPulse {
             0% { background-position: 0 -500px; }
             100% { background-position: 0 100vh; }
         }
-
         .hologram-container {
-            position: fixed;
-            bottom: -50px; right: 2%;
-            width: 450px; height: 650px;
-            z-index: -1; opacity: 0.35;
-            pointer-events: none;
-            filter: drop-shadow(0 0 15px var(--holo-cyan));
+            position: fixed; bottom: -50px; right: 2%;
+            width: 450px; height: 650px; z-index: -1; opacity: 0.35;
+            pointer-events: none; filter: drop-shadow(0 0 15px var(--holo-cyan));
             animation: holoFloat 4s ease-in-out infinite;
         }
-
         .hologram-avatar {
             width: 100%; height: 100%; object-fit: contain;
             mask-image: linear-gradient(to top, transparent 5%, black 40%);
             -webkit-mask-image: linear-gradient(to top, transparent 5%, black 40%);
         }
-
         .welcome-bubble {
             position: absolute; top: 15%; left: -40px;
-            background: rgba(0, 242, 254, 0.1);
-            border: 2px solid var(--holo-cyan);
+            background: rgba(0, 242, 254, 0.1); border: 2px solid var(--holo-cyan);
             padding: 10px 20px; border-radius: 20px 20px 0 20px;
             font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
             color: var(--holo-cyan); font-weight: bold;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
-            animation: textFlicker 3s infinite;
         }
-
         @keyframes holoFloat {
             0%, 100% { transform: translateY(0) scale(1); }
             50% { transform: translateY(-15px) scale(1.02); }
         }
-
         .blueprint-frame {
             width: 90%; max-width: 1200px;
-            background: rgba(10, 17, 40, 0.85);
+            background: var(--terminal-frame);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border: 2px solid var(--holo-blue); border-radius: 40px;
-            padding: 60px 40px;
-            box-shadow: 0 0 50px rgba(0, 242, 254, 0.15);
+            padding: 60px 40px; box-shadow: 0 0 50px rgba(0, 242, 254, 0.15);
         }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 25px;
-            border-bottom: 1px dashed rgba(0, 242, 254, 0.3);
-        }
-
+        header { text-align: center; margin-bottom: 40px; padding-bottom: 25px; border-bottom: 1px dashed rgba(0, 242, 254, 0.3); }
         .logo-area h1 {
-            font-size: 4.2rem; font-weight: 900; margin: 0 auto;
-            letter-spacing: -2px; text-transform: uppercase;
+            font-size: 4.2rem; font-weight: 900; margin: 0 auto; letter-spacing: -2px; text-transform: uppercase;
             background-image: linear-gradient(90deg, var(--holo-blue), var(--holo-cyan), #ffffff, var(--holo-blue));
-            background-size: 200% auto;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: liquidLight 4s linear infinite;
-            display: inline-block;
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: liquidLight 4s linear infinite; display: inline-block;
         }
-
         @keyframes liquidLight { to { background-position: 200% center; } }
-
-        .subtitle {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.05rem; color: var(--holo-cyan); 
-            margin: 15px auto 0;
-            width: fit-content;
-        }
-
-        /* --- GLOWING LIVE TERMINAL CLOCK --- */
-        .terminal-clock-container {
-            margin-top: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            background: rgba(0, 242, 254, 0.05);
-            border: 1px solid rgba(0, 242, 254, 0.2);
-            display: inline-block;
-            padding: 8px 25px;
-            border-radius: 12px;
-            color: #ffffff;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.1);
-        }
-        .terminal-clock-container span {
-            color: var(--holo-cyan);
-            font-weight: bold;
-        }
-
-        .module-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: rgba(20, 30, 65, 0.6);
-            border: 1px solid rgba(0, 242, 254, 0.3);
-            padding: 30px; border-radius: 30px;
-            transition: all 0.4s var(--ease-pop);
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-
-        .card:hover {
-            background: rgba(30, 45, 90, 0.8);
-            transform: translateY(-12px) scale(1.03) rotate(1deg);
-            border-color: var(--holo-cyan);
-            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.25);
-        }
-
-        .card-num {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem; color: var(--holo-cyan);
-            margin-bottom: 15px; display: block;
-        }
-
+        .subtitle { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; color: var(--holo-cyan); margin: 15px auto 0; width: fit-content; }
+        .terminal-clock-container { margin-top: 20px; font-family: 'JetBrains Mono', monospace; background: rgba(0, 242, 254, 0.05); border: 1px solid rgba(0, 242, 254, 0.2); display: inline-block; padding: 8px 25px; border-radius: 12px; color: #ffffff; font-size: 0.9rem; letter-spacing: 1px; }
+        .terminal-clock-container span { color: var(--holo-cyan); font-weight: bold; }
+        .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+        .card { background: rgba(20, 30, 65, 0.6); border: 1px solid rgba(0, 242, 254, 0.3); padding: 30px; border-radius: 30px; transition: all 0.4s var(--ease-pop); display: flex; flex-direction: column; justify-content: space-between; }
+        .card:hover { background: rgba(30, 45, 90, 0.8); transform: translateY(-12px) scale(1.03) rotate(1deg); border-color: var(--holo-cyan); box-shadow: 0 15px 35px rgba(0, 242, 254, 0.25); }
+        .card-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--holo-cyan); margin-bottom: 15px; display: block; }
         h2 { font-size: 1.5rem; color: white; margin: 0 0 15px 0; font-weight: 700; }
         p { font-size: 0.95rem; color: #a0aec0; line-height: 1.6; margin-bottom: 25px; }
-
         .btn-stack { display: flex; flex-direction: column; gap: 10px; }
-        .btn {
-            display: block; text-decoration: none; padding: 14px;
-            font-family: 'JetBrains Mono', monospace; font-weight: 700;
-            font-size: 0.8rem; text-align: center; text-transform: uppercase;
-            border-radius: 20px; transition: 0.3s; box-sizing: border-box;
-        }
-
+        .btn { display: block; text-decoration: none; padding: 14px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.8rem; text-align: center; text-transform: uppercase; border-radius: 20px; transition: 0.3s; box-sizing: border-box; }
         .btn-primary { background: linear-gradient(135deg, var(--holo-blue), var(--holo-cyan)); color: var(--bg-dark); font-weight: 900; }
         .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--holo-cyan); }
         .btn-outline { border: 2px solid var(--holo-cyan); color: var(--holo-cyan); background: transparent; }
         .btn-outline:hover { background: rgba(0, 242, 254, 0.1); }
-
-        footer {
-            margin-top: 50px; text-align: center;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--holo-cyan);
-            opacity: 0.6;
-        }
-
+        footer { margin-top: 50px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--holo-cyan); opacity: 0.6; }
         @media (max-width: 1100px) { .hologram-container { display: none; } }
-        @media (max-width: 850px) {
-            .logo-area h1 { font-size: 2.6rem; }
-            .subtitle { font-size: 0.65rem; }
-            .blueprint-frame { padding: 30px 20px; }
-        }
+        @media (max-width: 850px) { .logo-area h1 { font-size: 2.6rem; } .subtitle { font-size: 0.65rem; } .blueprint-frame { padding: 30px 20px; } }
     </style>
 </head>
 <body>
-
     <div class="circuit-bg"></div>
-
     <div class="hologram-container">
         <div class="welcome-bubble">SYSTEM:// WELCOME_FACULTY</div>
         <img src="image_agent_tag_9492854331959900355" class="hologram-avatar" alt="Matrix human outline">
     </div>
-
     <div class="blueprint-frame">
         <header>
             <div class="logo-area">
                 <h1>Project FILES</h1>
                 <div class="subtitle">Faculty Interface for Logging & Exchange of Submissions</div>
             </div>
-            
-            <!-- Live Clock Displays Here Automatically -->
             <div class="terminal-clock-container">
                 SYS_CLOCK: <span id="matrix-clock">00:00:00 AM</span>
             </div>
         </header>
-
         <div class="module-grid">
             <div class="card">
                 <div>
@@ -228,7 +124,6 @@
                     <a href="https://script.google.com/a/macros/deped.gov.ph/s/AKfycbz1WeO2fhcKcTwNwhRQwbX1bJSF9e5sPY52d3SletsEFfc_tI6JINCGyIP2AoXDQNCM/exec" class="btn btn-primary">Initialize Link</a>
                 </div>
             </div>
-
             <div class="card">
                 <div>
                     <span class="card-num">// NODE_02_LEAVE</span>
@@ -241,7 +136,6 @@
                     <a href="https://docs.google.com/forms/u/0/d/e/1FAIpQLScT8a-rUFGZhJcq38Kgq0SgeX5OxTk4p6cFtZ7H9cwzgReKlQ/formResponse" class="btn btn-outline">Transmit File</a>
                 </div>
             </div>
-
             <div class="card">
                 <div>
                     <span class="card-num">// NODE_03_PRIN</span>
@@ -252,7 +146,6 @@
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLScT8a-rUFGZhJcq38Kgq0SgeX5OxTk4p6cFtZ7H9cwzgReKlQ/viewform?usp=header" class="btn btn-primary">Upload Packet</a>
                 </div>
             </div>
-
             <div class="card">
                 <div>
                     <span class="card-num">// NODE_04_COPY</span>
@@ -264,13 +157,10 @@
                 </div>
             </div>
         </div>
-
         <footer>
             [ SYNC_STATUS: SECURE ] // SYSTEM_CLOCK: ACTIVE // RUNTIME_OK
         </footer>
     </div>
-
-    <!-- SIMPLE SCRIPT THAT WORKS INSTANTLY -->
     <script>
         function updateMatrixClock() {
             const now = new Date();
@@ -278,16 +168,10 @@
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
             const ampm = hours >= 12 ? 'PM' : 'AM';
-            
-            hours = hours % 12;
-            hours = hours ? hours : 12; // convert 0 to 12
-            const hoursStr = String(hours).padStart(2, '0');
-
-            document.getElementById('matrix-clock').textContent = `${hoursStr}:${minutes}:${seconds} ${ampm}`;
+            hours = hours % 12; hours = hours ? hours : 12;
+            document.getElementById('matrix-clock').textContent = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
         }
-        setInterval(updateMatrixClock, 1000);
-        updateMatrixClock(); // Run immediately on load
+        setInterval(updateMatrixClock, 1000); updateMatrixClock();
     </script>
-
 </body>
 </html>
