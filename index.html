@@ -16,7 +16,10 @@
         body {
             margin: 0; padding: 0;
             font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-dark) !important;
+            /* Google Drive background image with a dark overlay gradient for readability */
+            background: linear-gradient(rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.85)), 
+                        url('https://drive.google.com/uc?export=view&id=1hOV5FL-cCrsicjGEvxb2j6B858th1DY4') no-repeat center center fixed !important;
+            background-size: cover !important;
             color: var(--text-light);
             min-height: 100vh;
             display: flex; justify-content: center; align-items: center;
@@ -44,6 +47,18 @@
         }
         
         header { text-align: center; margin-bottom: 45px; padding-bottom: 25px; border-bottom: 1px dashed rgba(0, 242, 254, 0.2); }
+        
+        /* School Header Subtitle at the Top */
+        .school-banner {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--holo-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(79, 172, 254, 0.4);
+        }
+
         .logo-area h1 {
             font-size: 4.5rem; font-weight: 900; margin: 0 auto; letter-spacing: -2px; text-transform: uppercase;
             background-image: linear-gradient(90deg, var(--holo-blue), var(--holo-cyan), #ffffff, var(--holo-blue));
@@ -160,6 +175,7 @@
     <div class="blueprint-frame" id="main-shell">
         <header>
             <div class="logo-area">
+                <div class="school-banner">Juan R. Liwag Memorial High School - JHS</div>
                 <h1>Project FILES</h1>
                 <div class="subtitle">Faculty Interface for Logging & Exchange of Submissions</div>
             </div>
@@ -195,8 +211,7 @@
                     <p>Automated Form 6 system engine. Download document templates, process security signatures, and parse vector payload.</p>
                 </div>
                 <div class="btn-stack">
-                    <!-- Direct file download link format -->
-                    <a href="https://drive.google.com/uc?export=download&id=12B2ZpX3Kkh8fGpWclwvS3zHHPAHYhcbt" class="btn btn-primary">Fetch Template</a>
+                    <a href="https://drive.google.com/uc?export=download&id=1V5owA3CJv3WqRF-j2625371B7mEIepMg" class="btn btn-primary">Fetch Template</a>
                     <a href="https://www.ilovepdf.com/sign-pdf" target="_blank" class="btn btn-outline">E-Sign Key</a>
                     <a href="#" onclick="initiateCountdown(this, 'count-card-2', 'https://docs.google.com/forms/u/0/d/e/1FAIpQLScT8a-rUFGZhJcq38Kgq0SgeX5OxTk4p6cFtZ7H9cwzgReKlQ/formResponse')" class="btn btn-outline">Transmit File</a>
                 </div>
