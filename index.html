@@ -7,31 +7,31 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #030712;
-            --terminal-frame: rgba(8, 14, 36, 0.95);
-            --holo-cyan: #00f2fe;
-            --holo-blue: #4facfe;
-            --text-light: #f1f5f9;
+            --bg-light: #f8fafc;
+            --accent-blue: #0284c7;
+            --accent-cyan: #0891b2;
+            --text-dark: #0f172a;
+            --text-muted: #334155;
         }
         body {
-            margin: 0; padding: 0;
+            margin: 0; padding: 40px 0;
             font-family: 'Outfit', sans-serif;
-            /* Google Drive background image with a dark overlay gradient for readability */
-            background: linear-gradient(rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.85)), 
+            /* Light theme background image na may puting gradient overlay para bumagay sa light theme */
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
                         url('https://drive.google.com/uc?export=view&id=1hOV5FL-cCrsicjGEvxb2j6B858th1DY4') no-repeat center center fixed !important;
             background-size: cover !important;
-            color: var(--text-light);
+            color: var(--text-dark);
             min-height: 100vh;
             display: flex; justify-content: center; align-items: center;
             overflow-x: hidden; position: relative;
         }
         
-        /* Persistent Circuit Grid System */
+        /* Persistent Circuit Grid System (Magaan ang kulay para sa light theme) */
         .circuit-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
-                linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(2, 132, 199, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
             background-size: 50px 50px; z-index: -2;
             transition: transform 2.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
@@ -39,44 +39,50 @@
         /* Mainframe UI Shell Container */
         .blueprint-frame {
             width: 90%; max-width: 1250px;
-            background: var(--terminal-frame);
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border: 2px solid rgba(0, 242, 254, 0.2); border-radius: 24px;
-            padding: 60px 40px; box-shadow: 0 0 80px rgba(0, 0, 0, 0.9);
+            background: transparent;
+            padding: 20px;
             position: relative; transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
         
-        header { text-align: center; margin-bottom: 45px; padding-bottom: 25px; border-bottom: 1px dashed rgba(0, 242, 254, 0.2); }
+        header { text-align: center; margin-bottom: 45px; padding-bottom: 25px; border-bottom: 1px dashed rgba(2, 132, 199, 0.3); }
         
-        /* School Header Subtitle at the Top */
+        /* School Banner at the Top */
         .school-banner {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.95rem;
-            color: var(--holo-blue);
+            color: var(--accent-blue);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(79, 172, 254, 0.4);
+            font-weight: 700;
         }
 
         .logo-area h1 {
             font-size: 4.5rem; font-weight: 900; margin: 0 auto; letter-spacing: -2px; text-transform: uppercase;
-            background-image: linear-gradient(90deg, var(--holo-blue), var(--holo-cyan), #ffffff, var(--holo-blue));
+            background-image: linear-gradient(90deg, #0369a1, #0284c7, #0ea5e9, #0369a1);
             background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: liquidLight 4s linear infinite; display: inline-block;
         }
         @keyframes liquidLight { to { background-position: 200% center; } }
-        .subtitle { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; color: var(--holo-cyan); margin: 15px auto 0; letter-spacing: 1px; }
         
-        .terminal-clock-container { margin-top: 20px; font-family: 'JetBrains Mono', monospace; background: rgba(0, 242, 254, 0.04); border: 1px solid rgba(0, 242, 254, 0.25); display: inline-block; padding: 8px 25px; border-radius: 8px; font-size: 0.9rem; box-shadow: 0 0 15px rgba(0, 242, 254, 0.05); }
-        .terminal-clock-container span { color: var(--holo-cyan); font-weight: bold; text-shadow: 0 0 5px var(--holo-cyan); }
+        .subtitle { 
+            font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; color: var(--text-muted); margin: 15px auto 0; letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .terminal-clock-container { 
+            margin-top: 20px; font-family: 'JetBrains Mono', monospace; background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(2, 132, 199, 0.3); display: inline-block; padding: 8px 25px; border-radius: 8px; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+            backdrop-filter: blur(10px);
+        }
+        .terminal-clock-container span { color: var(--accent-blue); font-weight: bold; }
 
         /* --- THE MODULE MATRIX GRID --- */
         .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
         .card { 
-            background: rgba(6, 11, 30, 0.7); 
-            border: 1px solid rgba(0, 242, 254, 0.15); 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(2, 132, 199, 0.2); 
             padding: 35px; 
             border-radius: 20px; 
             display: flex; 
@@ -84,55 +90,43 @@
             justify-content: space-between;
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), inset 0 0 20px rgba(255, 255, 255, 0.5);
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
-        /* [HOVER ENGINE]: Rhythmic Neon Border Heartbeat Pulse */
+        /* [HOVER ENGINE]: Light Theme Glow Pulse */
         .card:hover {
             transform: translateY(-8px);
-            border-color: var(--holo-cyan);
-            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.25), inset 0 0 20px rgba(0, 242, 254, 0.1);
-            animation: cyberHeartbeat 1.5s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(2, 132, 199, 0.15), inset 0 0 25px rgba(2, 132, 199, 0.05);
         }
 
-        @keyframes cyberHeartbeat {
-            0% { border-color: rgba(0, 242, 254, 0.4); box-shadow: 0 10px 20px rgba(0, 242, 254, 0.15); }
-            14% { border-color: var(--holo-cyan); box-shadow: 0 20px 40px rgba(0, 242, 254, 0.35), inset 0 0 25px rgba(0, 242, 254, 0.15); }
-            28% { border-color: rgba(0, 242, 254, 0.5); box-shadow: 0 12px 24px rgba(0, 242, 254, 0.2); }
-            42% { border-color: var(--holo-cyan); box-shadow: 0 22px 45px rgba(0, 242, 254, 0.4), inset 0 0 25px rgba(0, 242, 254, 0.15); }
-            70% { border-color: rgba(0, 242, 254, 0.4); box-shadow: 0 10px 20px rgba(0, 242, 254, 0.15); }
-            100% { border-color: rgba(0, 242, 254, 0.4); box-shadow: 0 10px 20px rgba(0, 242, 254, 0.15); }
-        }
-
-        /* [CLICK ENGINE]: Immersive Full-Screen Countdown Shroud overlay */
+        /* [CLICK ENGINE]: Full-Screen Countdown Shroud overlay (Light version) */
         .countdown-shroud {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, #080f28 20%, #02040a 100%);
+            background: radial-gradient(circle, #f0f9ff 20%, #e0f2fe 100%);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; z-index: 10;
             transition: opacity 0.3s ease;
         }
         .countdown-number {
             font-family: 'JetBrains Mono', monospace; font-weight: 900;
-            font-size: 3.5rem; color: #ffffff;
-            text-shadow: 0 0 20px var(--holo-cyan), 0 0 40px var(--holo-blue);
+            font-size: 3.5rem; color: #0369a1;
+            text-shadow: 0 0 20px rgba(2, 132, 199, 0.3);
             transform: scale(2); opacity: 0;
         }
         .countdown-ticker {
-            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--holo-cyan);
-            letter-spacing: 2px; margin-top: 10px; opacity: 0.6; text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent-blue);
+            letter-spacing: 2px; margin-top: 10px; opacity: 0.8; text-transform: uppercase;
         }
 
-        /* Firing Deployment Action State */
         .card.launching-sequence {
-            border-color: var(--holo-cyan) !important;
-            box-shadow: 0 0 50px rgba(0, 242, 254, 0.4) !important;
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 50px rgba(2, 132, 199, 0.25) !important;
             pointer-events: none;
         }
         .card.launching-sequence .countdown-shroud { opacity: 1; }
         
-        /* Active number animation pulse loop */
         .card.launching-sequence .countdown-number {
             animation: countPulse 1s linear infinite;
         }
@@ -145,27 +139,25 @@
         }
 
         /* Card Structural Elements Layout */
-        .card-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(0, 242, 254, 0.4); margin-bottom: 15px; display: block; }
-        .card:hover .card-num { color: var(--holo-cyan); text-shadow: 0 0 5px var(--holo-cyan); }
-        h2 { font-size: 1.6rem; color: white; margin: 0 0 15px 0; font-weight: 700; letter-spacing: -0.5px; }
-        p { font-size: 0.95rem; color: #94a3b8; line-height: 1.6; margin-bottom: 25px; }
+        .card-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #0284c7; margin-bottom: 15px; display: block; font-weight: 700; }
+        h2 { font-size: 1.6rem; color: var(--text-dark); margin: 0 0 15px 0; font-weight: 700; letter-spacing: -0.5px; }
+        p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 25px; }
         
         .btn-stack { display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 6; }
         .btn { 
             display: block; text-decoration: none; padding: 14px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.8rem; text-align: center; text-transform: uppercase; border-radius: 12px; transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); box-sizing: border-box;
         }
         
-        .btn-primary { background: linear-gradient(135deg, var(--holo-blue), var(--holo-cyan)); color: var(--bg-dark); font-weight: 900; box-shadow: 0 4px 12px rgba(0, 242, 254, 0.15); }
-        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 20px rgba(0, 242, 254, 0.4); }
+        .btn-primary { background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; font-weight: 900; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25); }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 20px rgba(2, 132, 199, 0.4); }
         
-        .btn-outline { border: 2px solid var(--holo-cyan); color: var(--holo-cyan); background: transparent; }
-        .btn-outline:hover { background: rgba(0, 242, 254, 0.1); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 242, 254, 0.2); }
+        .btn-outline { border: 2px solid var(--accent-blue); color: var(--accent-blue); background: rgba(255, 255, 255, 0.6); }
+        .btn-outline:hover { background: rgba(2, 132, 199, 0.1); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2); }
 
-        footer { margin-top: 60px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--holo-cyan); opacity: 0.4; letter-spacing: 1px; }
+        footer { margin-top: 60px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-muted); opacity: 0.8; letter-spacing: 1px; font-weight: 600; }
         
-        /* Deep portal frame distortions fired at zero */
-        .warp-active-bg { transform: scale(5) rotate(45deg); filter: hue-rotate(180deg) brightness(0); opacity: 0; transition: all 1.2s cubic-bezier(0.7, 0, 0.2, 1); }
-        .warp-zoom-frame { transform: scale(0.85); opacity: 0; filter: blur(20px) brightness(0); transition: all 1s cubic-bezier(0.7, 0, 0.2, 1); }
+        .warp-active-bg { transform: scale(5) rotate(45deg); filter: hue-rotate(180deg) brightness(1.5); opacity: 0; transition: all 1.2s cubic-bezier(0.7, 0, 0.2, 1); }
+        .warp-zoom-frame { transform: scale(0.85); opacity: 0; filter: blur(20px) brightness(1.5); transition: all 1s cubic-bezier(0.7, 0, 0.2, 1); }
     </style>
 </head>
 <body>
@@ -271,14 +263,12 @@
             const activeCard = buttonElement.closest('.card');
             if (activeCard.classList.contains('launching-sequence')) return;
             
-            // Activate core sequence lockdowns
             activeCard.classList.add('launching-sequence');
             const counterElement = document.getElementById(textDisplayId);
             
             let countState = 3;
             counterElement.textContent = countState;
             
-            // Handle step-down loops every 1000ms
             const sequenceTimer = setInterval(() => {
                 countState--;
                 
@@ -288,11 +278,9 @@
                     clearInterval(sequenceTimer);
                     counterElement.textContent = "0";
                     
-                    // Trigger terminal destruction frame animations right at zero
                     document.getElementById('grid-bg').classList.add('warp-active-bg');
                     document.getElementById('main-shell').classList.add('warp-zoom-frame');
                     
-                    // Hard warp to target address
                     setTimeout(() => {
                         window.location.href = finalDestinationUrl;
                     }, 400);
