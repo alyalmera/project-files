@@ -16,9 +16,9 @@
         body {
             margin: 0; padding: 40px 0;
             font-family: 'Outfit', sans-serif;
-            /* Light theme background image na may puting gradient overlay para bumagay sa light theme */
-            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                        url('https://drive.google.com/uc?export=view&id=1hOV5FL-cCrsicjGEvxb2j6B858th1DY4') no-repeat center center fixed !important;
+            /* Direct background image link na may puting wash-out overlay para luminaw ang mga teksto */
+            background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), 
+                        url('https://lh3.googleusercontent.com/d/1hOV5FL-cCrsicjGEvxb2j6B858th1DY4=w1920') no-repeat center center fixed !important;
             background-size: cover !important;
             color: var(--text-dark);
             min-height: 100vh;
@@ -26,7 +26,7 @@
             overflow-x: hidden; position: relative;
         }
         
-        /* Persistent Circuit Grid System (Magaan ang kulay para sa light theme) */
+        /* Persistent Circuit Grid System */
         .circuit-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
@@ -80,9 +80,9 @@
         .module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
         .card { 
-            background: rgba(255, 255, 255, 0.85); 
+            background: rgba(255, 255, 255, 0.88); 
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(2, 132, 199, 0.2); 
+            border: 1px solid rgba(2, 132, 199, 0.25); 
             padding: 35px; 
             border-radius: 20px; 
             display: flex; 
@@ -94,14 +94,14 @@
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
-        /* [HOVER ENGINE]: Light Theme Glow Pulse */
+        /* [HOVER ENGINE] */
         .card:hover {
             transform: translateY(-8px);
             border-color: var(--accent-blue);
             box-shadow: 0 20px 40px rgba(2, 132, 199, 0.15), inset 0 0 25px rgba(2, 132, 199, 0.05);
         }
 
-        /* [CLICK ENGINE]: Full-Screen Countdown Shroud overlay (Light version) */
+        /* [CLICK ENGINE]: Full-Screen Countdown Shroud overlay */
         .countdown-shroud {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle, #f0f9ff 20%, #e0f2fe 100%);
@@ -154,7 +154,7 @@
         .btn-outline { border: 2px solid var(--accent-blue); color: var(--accent-blue); background: rgba(255, 255, 255, 0.6); }
         .btn-outline:hover { background: rgba(2, 132, 199, 0.1); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2); }
 
-        footer { margin-top: 60px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-muted); opacity: 0.8; letter-spacing: 1px; font-weight: 600; }
+        footer { margin-top: 60px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-muted); opacity: 0.9; letter-spacing: 1px; font-weight: 600; }
         
         .warp-active-bg { transform: scale(5) rotate(45deg); filter: hue-rotate(180deg) brightness(1.5); opacity: 0; transition: all 1.2s cubic-bezier(0.7, 0, 0.2, 1); }
         .warp-zoom-frame { transform: scale(0.85); opacity: 0; filter: blur(20px) brightness(1.5); transition: all 1s cubic-bezier(0.7, 0, 0.2, 1); }
