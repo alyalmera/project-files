@@ -16,8 +16,9 @@
         body {
             margin: 0; padding: 40px 0;
             font-family: 'Outfit', sans-serif;
+            /* Direktang binabasa ang iyong in-upload na background image mula sa GitHub kasama ang light wash-out overlay */
             background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), 
-                        url('https://raw.githubusercontent.com/alyalmera/project-files/main/Gemini_Generated_Image_hfs2plhfs2plhfs2.jpg') no-repeat center center fixed !important;
+                        url('Gemini_Generated_Image_hfs2plhfs2plhfs2.jpg') no-repeat center center fixed !important;
             background-size: cover !important;
             color: var(--text-dark);
             min-height: 100vh;
@@ -35,7 +36,7 @@
             transition: transform 2.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
         
-        /* Mainframe UI Shell Container */
+        /* Mainframe UI Shell Container (Walang outer box background/border) */
         .blueprint-frame {
             width: 90%; max-width: 1250px;
             background: transparent;
